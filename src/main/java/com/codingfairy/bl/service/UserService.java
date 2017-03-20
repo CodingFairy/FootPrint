@@ -19,7 +19,7 @@ public interface UserService{
 
     ResultVo<UserVo> updateUser(int id, String avatar,Gender gender,String description);
 
-    ResultVo<RouteVo> getRoutes(int userId);
+    List<RouteVo> getRoutes(int userId);
 
     ResultVo<RouteVo> saveRoute(int userId, List<Integer> storyIdList);
 
