@@ -8,7 +8,8 @@ import java.util.List;
  * Service about Story
  */
 public interface StoryService {
-    ResultVo<StoryVo> createStory(StoryVo storyVo);
+    ResultVo<StoryVo> createStory(int userId,String content,double longitude,double latitude,
+                                  List<String> imgUrlList);
 
     ResultVo<StoryVo> deleteStory(int storyId);
 
@@ -16,7 +17,7 @@ public interface StoryService {
 
     void unStarStory(int userId,int storyId);
 
-    ResultVo<CommentVo> comment(CommentVo commentVo);
+    ResultVo<CommentVo> comment(int userId,int storyId,String content,int parent);
 
     void deleteComment(int commentId);
 
@@ -24,9 +25,6 @@ public interface StoryService {
 
     List<StoryVo> getStoryList(double longitude, double latitude, int num);
 
-    List<RouteVo> getRouteList(int userId);
-
     List<StoryVo> getRecommendStory(double longitude,double latitude);
-
 
 }

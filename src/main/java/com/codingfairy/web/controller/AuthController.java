@@ -23,13 +23,6 @@ public class AuthController {
     @Resource
     private AuthService authService;
 
-    @ApiOperation(value = "Get user info",notes = "Get user basic info.",
-            response = ResultVo.class, produces = "application/json;charset=UTF-8")
-    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResultVo<UserVo> findUserById(@PathVariable int id) {
-        return authService.findUserById(id);
-    }
-
     @ApiOperation(value = "Login operation",notes = "Login operation",
             response = ResultVo.class, produces = "application/json;charset=UTF-8")
     @PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -43,13 +36,14 @@ public class AuthController {
     @PostMapping(value = "/register",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResultVo<UserVo> register(@RequestParam String username,@RequestParam String password,
                                      @RequestParam String phone){
-        return null;
+        return authService.register(username,password,phone);
     }
 
     @ApiOperation(value = "Logout operation",notes = "Logout operation",
             response = ResultVo.class, produces = "application/json;charset=UTF-8")
     @GetMapping(value = "/logout",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResultVo<Void> logout(HttpSession session){
+
         session.invalidate();
         return null;
     }
