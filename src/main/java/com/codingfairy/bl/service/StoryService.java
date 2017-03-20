@@ -13,13 +13,15 @@ public interface StoryService {
 
     ResultVo<StoryVo> deleteStory(int storyId);
 
+    ResultVo<StoryVo> getStory(int storyId);
+
     ResultVo<StarVo> starStory(int userId, int storyId);
 
-    void unStarStory(int userId,int storyId);
+    ResultVo<Void> unStarStory(int userId,int storyId);
 
     ResultVo<CommentVo> comment(int userId,int storyId,String content,int parent);
 
-    void deleteComment(int commentId);
+    ResultVo<Void> deleteComment(int commentId);
 
     List<CommentVo> getCommentList(int storyId);
 

@@ -1,6 +1,7 @@
 package com.codingfairy.web.controller;
 
 import com.codingfairy.bl.service.StoryService;
+import com.codingfairy.bl.vo.CommentVo;
 import com.codingfairy.bl.vo.ResultVo;
 import com.codingfairy.bl.vo.StarVo;
 import com.codingfairy.bl.vo.StoryVo;
@@ -46,6 +47,56 @@ public class StoryController {
         return storyService.starStory(userId,storyId);
     }
 
+    @ApiOperation(value = "unStar a story", notes = "Cancel star a story",
+            response = ResultVo.class, produces = "application/json;charset=UTF-8")
+    @GetMapping(value = "/unstar/{userId}",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResultVo<Void> unstarStory(@PathVariable int userId,@RequestParam int storyId){
+        return storyService.unStarStory(userId,storyId);
+    }
+
+    @ApiOperation(value = "Comment a story", notes = "Comment a story",
+            response = ResultVo.class, produces = "application/json;charset=UTF-8")
+    @GetMapping(value = "/comment/{userId}",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResultVo<CommentVo> commentStory(@PathVariable int userId, @RequestParam int storyId,
+                                            @RequestParam String content, @RequestParam int parentId){
+        return storyService.comment(userId,storyId,content,parentId);
+    }
+
+    @ApiOperation(value = "Delete comment on a story", notes = "Delete comment on a story",
+            response = ResultVo.class, produces = "application/json;charset=UTF-8")
+    @GetMapping(value = "/delComment/{commentId}",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResultVo<Void> delComment(@PathVariable int commentId){
+        return storyService.deleteComment(commentId);
+    }
+
+    @ApiOperation(value = "get comment list", notes = "get comment list of a story",
+            response = ResultVo.class, responseContainer = "List", produces = "application/json;charset=UTF-8")
+    @GetMapping(value = "/commentList/{storyId}",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public List<CommentVo> getCommentList(@PathVariable int storyId){
+        return storyService.getCommentList(storyId);
+    }
+
+    @ApiOperation(value = "get story list", notes = "get story list in a distance",
+            response = ResultVo.class, responseContainer = "List", produces = "application/json;charset=UTF-8")
+    @GetMapping(value = "/storyList",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public List<StoryVo> getStoryList(@RequestParam double longitude,@RequestParam double latitude,
+                                        @RequestParam int num){
+        return storyService.getStoryList(longitude,latitude,num);
+    }
+
+    @ApiOperation(value = "get a specific story", notes = "get a specific story when the requirements meet",
+            response = ResultVo.class, produces = "application/json;charset=UTF-8")
+    @GetMapping(value = "/storyDetail/{storyId}",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResultVo<StoryVo> getStory(@PathVariable int storyId){
+        return storyService.getStory(storyId);
+    }
+
+    @ApiOperation(value = "get recommend story list", notes = "get recommend story list in a distance",
+            response = ResultVo.class, responseContainer = "List", produces = "application/json;charset=UTF-8")
+    @GetMapping(value = "/recommend",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public List<StoryVo> getRecommendStories(@RequestParam double logitude,@RequestParam double latitude){
+        return storyService.getRecommendStory(logitude, latitude);
+    }
 
 
 
