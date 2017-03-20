@@ -2,6 +2,7 @@ package com.codingfairy.bl.serviceImpl;
 
 import com.codingfairy.bl.service.StoryService;
 import com.codingfairy.bl.vo.ResultVo;
+import com.codingfairy.bl.vo.StoryVo;
 import org.springframework.stereotype.Service;
 
 /**
@@ -13,7 +14,7 @@ public class StoryServiceImpl implements StoryService {
 
 
     @Override
-    public ResultVo<Boolean> createStory() {
+    public ResultVo<StoryVo> createStory() {
         return null;
     }
 

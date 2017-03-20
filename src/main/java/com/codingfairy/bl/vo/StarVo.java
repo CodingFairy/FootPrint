@@ -11,7 +11,7 @@ public class StarVo {
     private UserVo userVo;
 
     public StarVo(StarEntity starEntity){
-
+        this(starEntity,false);
     }
 
     public StarVo(StarEntity starEntity, boolean hasSession){
