@@ -31,7 +31,9 @@ public class StoryPictureDaoImplTest extends BaseTest {
     public void save() throws Exception {
         StoryEntity storyEntity = storyDao.findById(1);
         StoryPicEntity storyPicEntity = new StoryPicEntity();
-        storyPicEntity.setUrl("");
+        storyPicEntity.setUrl("http://hostel-world.oss-cn-shanghai.aliyuncs.com/images/logo.png");
+        storyPicEntity.setStoryEntity(storyEntity);
+        System.out.println(storyPictureDao.save(storyPicEntity).getId());
     }
 
     @Test
@@ -41,7 +43,7 @@ public class StoryPictureDaoImplTest extends BaseTest {
 
     @Test
     public void findById() throws Exception {
-
+        System.out.println(storyDao.findById(1));
     }
 
 }

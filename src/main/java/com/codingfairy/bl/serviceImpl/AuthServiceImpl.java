@@ -20,21 +20,6 @@ public class AuthServiceImpl implements AuthService {
     @Resource
     private UserDao userDao;
 
-    @Override
-    public ResultVo<UserVo> findUserByName(String name) {
-        UserEntity entity = userDao.findUserByName(name);
-        if (entity == null)
-            return new ResultVo<>(ErrorCode.USER_NOT_FOUND, null);
-        return new ResultVo<>(ErrorCode.SUCCESS, new UserVo(entity));
-    }
-
-    @Override
-    public ResultVo<UserVo> findUserById(int id) {
-        UserEntity entity = userDao.findUserById(id);
-        if (entity == null)
-            return new ResultVo<>(ErrorCode.USER_NOT_FOUND, null);
-        return new ResultVo<>(ErrorCode.SUCCESS, new UserVo(entity));
-    }
 
     @Override
     public ResultVo<UserVo> login(String username, String password) {
@@ -44,5 +29,10 @@ public class AuthServiceImpl implements AuthService {
         if (userEntity == null)
             return new ResultVo<>(ErrorCode.ERROR_PASSWORD,null);
         return new ResultVo<>(ErrorCode.SUCCESS,new UserVo(userEntity));
+    }
+
+    @Override
+    public ResultVo<UserVo> register(String username, String password, String phone) {
+        return null;
     }
 }

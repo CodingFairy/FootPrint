@@ -11,6 +11,7 @@ public class CommentEntity {
     private int id;
     private String content;
     private UserEntity userEntity;
+    private StoryEntity storyEntity;
     private CommentEntity parentComment;
 
     @Id
@@ -72,5 +73,15 @@ public class CommentEntity {
 
     public void setParentComment(CommentEntity parentComment) {
         this.parentComment = parentComment;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "story_id", referencedColumnName = "id")
+    public StoryEntity getStoryEntity() {
+        return storyEntity;
+    }
+
+    public void setStoryEntity(StoryEntity storyEntity) {
+        this.storyEntity = storyEntity;
     }
 }

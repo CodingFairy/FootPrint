@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class StoryPicEntity {
     private String url;
     private int id;
+    private StoryEntity storyEntity;
 
     @Basic
     @Column(name = "url")
@@ -50,5 +51,15 @@ public class StoryPicEntity {
         int result = url != null ? url.hashCode() : 0;
         result = 31 * result + id;
         return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "story_id", referencedColumnName = "id")
+    public StoryEntity getStoryEntity() {
+        return storyEntity;
+    }
+
+    public void setStoryEntity(StoryEntity storyEntity) {
+        this.storyEntity = storyEntity;
     }
 }

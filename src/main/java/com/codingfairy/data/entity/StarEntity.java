@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class StarEntity {
     private int id;
     private UserEntity userEntity;
+    private StoryEntity storyEntity;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -47,5 +48,15 @@ public class StarEntity {
 
     public void setUserEntity(UserEntity userEntity) {
         this.userEntity = userEntity;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "story_id", referencedColumnName = "id")
+    public StoryEntity getStoryEntity() {
+        return storyEntity;
+    }
+
+    public void setStoryEntity(StoryEntity storyEntity) {
+        this.storyEntity = storyEntity;
     }
 }

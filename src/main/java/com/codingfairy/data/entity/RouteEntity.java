@@ -11,10 +11,9 @@ import java.util.List;
 public class RouteEntity {
     private int id;
     private String description;
+    private UserEntity userEntity;
     //set this when create
     private List<RouteStoryEntity> routeStoryEntities;
-    //get stories
-    private List<StoryEntity> storyEntities;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -67,15 +66,13 @@ public class RouteEntity {
         this.routeStoryEntities = routeStoryEntities;
     }
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "route_story", schema = "footprint",
-            joinColumns = @JoinColumn(name = "route_id", referencedColumnName = "id",nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "story_id", referencedColumnName = "id",nullable = false))
-    public List<StoryEntity> getStoryEntities() {
-        return storyEntities;
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    public UserEntity getUserEntity() {
+        return userEntity;
     }
 
-    public void setStoryEntities(List<StoryEntity> storyEntities) {
-        this.storyEntities = storyEntities;
+    public void setUserEntity(UserEntity userEntity) {
+        this.userEntity = userEntity;
     }
 }

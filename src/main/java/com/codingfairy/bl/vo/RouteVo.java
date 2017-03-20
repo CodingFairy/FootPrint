@@ -25,7 +25,7 @@ public class RouteVo {
         BeanUtils.copyProperties(routeEntity,this,"routeStoryEntities");
         if(hasSession){
             routeStoryVos = routeEntity.getRouteStoryEntities().stream().map(RouteStoryVo::new).collect(Collectors.toList());
-            storyVos = routeEntity.getStoryEntities().stream().map(StoryVo::new).collect(Collectors.toList());
+            //storyVos = routeEntity.getStoryEntities().stream().map(StoryVo::new).collect(Collectors.toList());
         }
     }
 }
