@@ -25,6 +25,8 @@ public interface StoryService {
 
     List<StoryVo> getStoryList(double longitude, double latitude, int num);
 
+    List<RouteVo> getRouteList(int userId);
+
     List<StoryVo> getRecommendStory(double longitude,double latitude);
 
 }
