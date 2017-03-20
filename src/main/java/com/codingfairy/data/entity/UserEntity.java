@@ -6,6 +6,7 @@ import org.hibernate.annotations.Where;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * user entity
@@ -24,6 +25,12 @@ public class UserEntity {
     private Integer valid;
     private Timestamp deletedAt;
     private Gender gender;
+    private String description;
+    private List<UserEntity> following;
+    private List<UserEntity> follower;
+    private List<StoryEntity> userStories;
+    private List<CommentEntity> commentEntities;
+    private List<RouteEntity> routeEntities;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -147,5 +154,69 @@ public class UserEntity {
 
     public void setGender(Gender gender) {
         this.gender = gender;
+    }
+
+    @Basic
+    @Column(name = "description")
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_follow", schema = "footprint",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id",nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "follow_id", referencedColumnName = "id",nullable = false))
+    public List<UserEntity> getFollowing() {
+        return following;
+    }
+
+    public void setFollowing(List<UserEntity> following) {
+        this.following = following;
+    }
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_follow", schema = "footprint",
+            joinColumns = @JoinColumn(name = "follow_id", referencedColumnName = "id",nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id",nullable = false))
+    public List<UserEntity> getFollower() {
+        return follower;
+    }
+
+    public void setFollower(List<UserEntity> follower) {
+        this.follower = follower;
+    }
+
+    @OneToMany
+    @JoinColumn(name = "user_id" , referencedColumnName = "id")
+    public List<StoryEntity> getUserStories() {
+        return userStories;
+    }
+
+    public void setUserStories(List<StoryEntity> userStories) {
+        this.userStories = userStories;
+    }
+
+    @OneToMany
+    @JoinColumn(name = "user_id" , referencedColumnName = "id")
+    public List<CommentEntity> getCommentEntities() {
+        return commentEntities;
+    }
+
+    public void setCommentEntities(List<CommentEntity> commentEntities) {
+        this.commentEntities = commentEntities;
+    }
+
+    @OneToMany
+    @JoinColumn(name = "user_id" , referencedColumnName = "id")
+    public List<RouteEntity> getRouteEntities() {
+        return routeEntities;
+    }
+
+    public void setRouteEntities(List<RouteEntity> routeEntities) {
+        this.routeEntities = routeEntities;
     }
 }
