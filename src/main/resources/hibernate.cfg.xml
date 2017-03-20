@@ -9,5 +9,6 @@
         <property name="current_session_context_class">thread</property>
         <!--<property name="packagesToScan" >entity</property>-->
         <property name="hbm2ddl.auto">update</property>
+        <mapping class="com.codingfairy.data.entity.UserEntity"/>
     </session-factory>
 </hibernate-configuration>
