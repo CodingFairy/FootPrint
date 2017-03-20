@@ -11,6 +11,7 @@ public class CommentEntity {
     private int id;
     private String content;
     private UserEntity userEntity;
+    private CommentEntity parentComment;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -61,5 +62,15 @@ public class CommentEntity {
 
     public void setUserEntity(UserEntity userEntity) {
         this.userEntity = userEntity;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "parent", referencedColumnName = "id")
+    public CommentEntity getParentComment() {
+        return parentComment;
+    }
+
+    public void setParentComment(CommentEntity parentComment) {
+        this.parentComment = parentComment;
     }
 }

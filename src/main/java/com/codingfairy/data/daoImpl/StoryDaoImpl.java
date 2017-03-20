@@ -9,7 +9,8 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * Created by cuihao on 2017/3/20.
+ * story dao impl
+ * @author cuihao
  */
 @Repository
 public class StoryDaoImpl implements StoryDao {
@@ -34,6 +35,7 @@ public class StoryDaoImpl implements StoryDao {
 
     @Override
     public List<StoryEntity> findByLocation(double longitude, double latitude, int size) {
-        return null;
+        List<StoryEntity> storyEntities = storyRepository.findByLocation(longitude, latitude);
+        return storyEntities.size()>size? storyEntities.subList(0,size): storyEntities;
     }
 }
