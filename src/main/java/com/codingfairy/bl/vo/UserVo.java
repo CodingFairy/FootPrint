@@ -20,7 +20,6 @@ public class UserVo {
     private Timestamp createdAt;
     private Timestamp updatedAt;
     private Integer valid;
-    private Timestamp deletedAt;
     private Gender gender;
     private String description;
     private List<UserVo> following;

@@ -8,7 +8,8 @@ import com.codingfairy.bl.vo.UserVo;
  * @author cuihao
  */
 public interface AuthService {
-    ResultVo<UserVo> findUserByName(String name);
-    ResultVo<UserVo> findUserById(int id);
     ResultVo<UserVo> login(String username, String password);
+
+    ResultVo<UserVo> register(String username,String password,String phone);
+
 }
