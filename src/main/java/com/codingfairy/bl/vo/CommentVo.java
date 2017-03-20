@@ -15,7 +15,13 @@ public class CommentVo {
     private UserVo userVo;
 
     public CommentVo(CommentEntity commentEntity){
+        this(commentEntity,false);
+    }
+
+    public CommentVo(CommentEntity commentEntity,boolean hasSession){
         BeanUtils.copyProperties(commentEntity,this,"userEntity");
-        userVo = new UserVo(commentEntity.getUserEntity());
+        if(hasSession){
+            userVo = new UserVo(commentEntity.getUserEntity());
+        }
     }
 }

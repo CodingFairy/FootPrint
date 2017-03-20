@@ -40,17 +40,17 @@ public class UserController {
 
     @ApiOperation(value = "get followed list", notes = "get the users who follow this user,just names",
             response = String.class, responseContainer = "List", produces = "application/json;charset=UTF-8")
-    @PostMapping(value = "/following/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(value = "/followed/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<String> getFollowedList(@PathVariable int id){
         return null;
     }
 
 
-    @ApiOperation(value = "get story list", notes = "get the stories released by this user",
-            response = String.class, responseContainer = "List", produces = "application/json;charset=UTF-8")
-    @PostMapping(value = "/story/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public List<String> getPesonalStoryList(@PathVariable int id){
-        return null;
-    }
+//    @ApiOperation(value = "get story list", notes = "get the stories released by this user",
+//            response = String.class, responseContainer = "List", produces = "application/json;charset=UTF-8")
+//    @PostMapping(value = "/story/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+//    public List<String> getPesonalStoryList(@PathVariable int id){
+//        return null;
+//    }
 
 }
