@@ -9,6 +9,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 /**
  * authority verification web controller
@@ -35,5 +36,23 @@ public class AuthController {
     public ResultVo<UserVo> login(@RequestParam String username, @RequestParam String password) {
         return authService.login(username, password);
     }
+
+
+    @ApiOperation(value = "Register operation",notes = "Register operation",
+            response = ResultVo.class,produces = "application/json;charset=UTF-8")
+    @PostMapping(value = "/register",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResultVo<UserVo> register(@RequestParam String username,@RequestParam String password,
+                                     @RequestParam String phone){
+        return null;
+    }
+
+    @ApiOperation(value = "Logout operation",notes = "Logout operation",
+            response = ResultVo.class, produces = "application/json;charset=UTF-8")
+    @GetMapping(value = "/logout",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResultVo<Void> logout(HttpSession session){
+        session.invalidate();
+        return null;
+    }
+
 
 }
