@@ -51,5 +51,22 @@ public class UserController {
          return userService.deleteRoute(routeId);
     }
 
+    @ApiOperation(value = "follow a user", notes = "follow a user",
+            response = ResultVo.class, produces = "application/json;charset=UTF-8")
+    @PostMapping(value = "/follow/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResultVo<UserVo> follow(@PathVariable int id,@RequestParam int followId){
+        return userService.follow(id,followId);
+    }
+
+    @ApiOperation(value = "unfollow a user", notes = "cancel follow a user",
+            response = ResultVo.class, produces = "application/json;charset=UTF-8")
+    @PostMapping(value = "/unfollow/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResultVo<Void> unfollow(@PathVariable int id,@RequestParam int followId){
+        return userService.unfollow(id,followId);
+    }
+
+
+
+
 
 }
