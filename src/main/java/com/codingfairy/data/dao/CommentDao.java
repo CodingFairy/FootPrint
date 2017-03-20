@@ -7,6 +7,6 @@ import com.codingfairy.data.entity.CommentEntity;
  */
 public interface CommentDao {
     CommentEntity findById(int id);
-    CommentEntity save(int id);
+    CommentEntity save(CommentEntity commentEntity);
     void delete(int id);
 }

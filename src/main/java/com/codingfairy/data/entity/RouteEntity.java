@@ -11,7 +11,10 @@ import java.util.List;
 public class RouteEntity {
     private int id;
     private String description;
+    //set this when create
     private List<RouteStoryEntity> routeStoryEntities;
+    //get stories
+    private List<StoryEntity> storyEntities;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,5 +65,17 @@ public class RouteEntity {
 
     public void setRouteStoryEntities(List<RouteStoryEntity> routeStoryEntities) {
         this.routeStoryEntities = routeStoryEntities;
+    }
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "route_story", schema = "footprint",
+            joinColumns = @JoinColumn(name = "route_id", referencedColumnName = "id",nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "story_id", referencedColumnName = "id",nullable = false))
+    public List<StoryEntity> getStoryEntities() {
+        return storyEntities;
+    }
+
+    public void setStoryEntities(List<StoryEntity> storyEntities) {
+        this.storyEntities = storyEntities;
     }
 }
