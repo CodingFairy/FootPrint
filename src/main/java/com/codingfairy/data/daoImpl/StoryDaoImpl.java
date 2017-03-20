@@ -2,8 +2,10 @@ package com.codingfairy.data.daoImpl;
 
 import com.codingfairy.data.dao.StoryDao;
 import com.codingfairy.data.entity.StoryEntity;
+import com.codingfairy.data.repository.StoryRepository;
 import org.springframework.stereotype.Repository;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -11,19 +13,23 @@ import java.util.List;
  */
 @Repository
 public class StoryDaoImpl implements StoryDao {
+
+    @Resource
+    private StoryRepository storyRepository;
+
     @Override
     public StoryEntity findById(int id) {
-        return null;
+        return storyRepository.findOne(id);
     }
 
     @Override
     public StoryEntity save(StoryEntity storyEntity) {
-        return null;
+        return storyRepository.save(storyEntity);
     }
 
     @Override
     public void delete(int id) {
-
+        storyRepository.delete(id);
     }
 
     @Override

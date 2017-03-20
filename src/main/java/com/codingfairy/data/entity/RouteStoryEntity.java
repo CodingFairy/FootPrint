@@ -12,8 +12,6 @@ public class RouteStoryEntity {
     private int routeId;
     private int storyId;
     private Integer order;
-    //no need to set
-    private StoryEntity storyEntity;
 
     @Id
     @Column(name = "route_id")
@@ -65,15 +63,5 @@ public class RouteStoryEntity {
         result = 31 * result + storyId;
         result = 31 * result + (order != null ? order.hashCode() : 0);
         return result;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "story_id", referencedColumnName = "id")
-    public StoryEntity getStoryEntity() {
-        return storyEntity;
-    }
-
-    public void setStoryEntity(StoryEntity storyEntity) {
-        this.storyEntity = storyEntity;
     }
 }
