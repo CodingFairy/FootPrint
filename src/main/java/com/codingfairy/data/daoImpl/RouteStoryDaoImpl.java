@@ -2,7 +2,6 @@ package com.codingfairy.data.daoImpl;
 
 import com.codingfairy.data.dao.RouteStoryDao;
 import com.codingfairy.data.entity.RouteStoryEntity;
-import com.codingfairy.data.entity.RouteStoryEntityPK;
 import com.codingfairy.data.repository.RouteStoryRepository;
 import org.springframework.stereotype.Repository;
 
@@ -18,8 +17,8 @@ public class RouteStoryDaoImpl implements RouteStoryDao {
     private RouteStoryRepository routeStoryRepository;
 
     @Override
-    public RouteStoryEntity findById(RouteStoryEntityPK routeStoryEntityPK) {
-        return routeStoryRepository.findOne(routeStoryEntityPK);
+    public RouteStoryEntity findById(int id) {
+        return routeStoryRepository.findOne(id);
     }
 
     @Override
@@ -28,7 +27,7 @@ public class RouteStoryDaoImpl implements RouteStoryDao {
     }
 
     @Override
-    public void delete(RouteStoryEntityPK routeStoryEntityPK) {
-        routeStoryRepository.delete(routeStoryEntityPK);
+    public void delete(int id) {
+        routeStoryRepository.delete(id);
     }
 }

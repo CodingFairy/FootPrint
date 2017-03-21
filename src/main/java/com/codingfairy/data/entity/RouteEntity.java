@@ -12,7 +12,6 @@ public class RouteEntity {
     private int id;
     private String description;
     private UserEntity userEntity;
-    //set this when create
     private List<RouteStoryEntity> routeStoryEntities;
 
     @Id
