@@ -6,6 +6,7 @@ import com.codingfairy.bl.vo.UserVo;
 import com.codingfairy.data.dao.UserDao;
 import com.codingfairy.data.entity.UserEntity;
 import com.codingfairy.util.constant.ErrorCode;
+import com.codingfairy.util.enums.Gender;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -33,11 +34,12 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public ResultVo<UserVo> register(String username, String password, String phone) {
+    public ResultVo<UserVo> register(String username, String password, String phone,String gender) {
         UserEntity entity = new UserEntity();
         entity.setName(username);
         entity.setPassword(password);
         entity.setPhone(phone);
+        entity.setGender(Gender.valueOf(gender));
         entity.setCreatedAt(new Timestamp(System.currentTimeMillis()));
         entity.setValid(0);//尚未验证
         UserEntity savedEntity = userDao.save(entity);

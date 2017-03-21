@@ -55,7 +55,7 @@ public class RouteEntity {
         return result;
     }
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "story_id" , referencedColumnName = "id")
     public List<RouteStoryEntity> getRouteStoryEntities() {
         return routeStoryEntities;

@@ -26,9 +26,9 @@ public interface UserService{
 
     ResultVo<Void> deleteRoute(int routeId);
 
-    ResultVo<UserVo> follow(int userId,int followId);
+    ResultVo<Boolean> follow(int userId,int followId);
 
-    ResultVo<Void> unfollow(int userId,int followId);
+    ResultVo<Void> unfollow(int id);
 
 
 }

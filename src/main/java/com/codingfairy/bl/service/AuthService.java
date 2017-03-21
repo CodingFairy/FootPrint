@@ -10,6 +10,6 @@ import com.codingfairy.bl.vo.UserVo;
 public interface AuthService {
     ResultVo<UserVo> login(String username, String password);
 
-    ResultVo<UserVo> register(String username,String password,String phone);
+    ResultVo<UserVo> register(String username,String password,String phone,String gender);
 
 }

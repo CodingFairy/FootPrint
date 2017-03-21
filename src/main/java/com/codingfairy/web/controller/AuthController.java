@@ -35,8 +35,8 @@ public class AuthController {
             response = ResultVo.class,produces = "application/json;charset=UTF-8")
     @PostMapping(value = "/register",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResultVo<UserVo> register(@RequestParam String username,@RequestParam String password,
-                                     @RequestParam String phone){
-        return authService.register(username,password,phone);
+                                     @RequestParam String phone,@RequestParam String gender){
+        return authService.register(username,password,phone,gender);
     }
 
     @ApiOperation(value = "Logout operation",notes = "Logout operation",

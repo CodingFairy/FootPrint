@@ -55,15 +55,20 @@ public class UserController {
     @ApiOperation(value = "follow a user", notes = "follow a user",
             response = ResultVo.class, produces = "application/json;charset=UTF-8")
     @PostMapping(value = "/follow/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResultVo<UserVo> follow(@PathVariable int id,@RequestParam int followId){
+    public ResultVo<Boolean> follow(@PathVariable int id,@RequestParam int followId){
         return userService.follow(id,followId);
     }
 
+    /**
+     *
+     * @param id 这个id是follow本身的id，不是用户的id
+     * @return
+     */
     @ApiOperation(value = "unfollow a user", notes = "cancel follow a user",
             response = ResultVo.class, produces = "application/json;charset=UTF-8")
     @PostMapping(value = "/unfollow/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResultVo<Void> unfollow(@PathVariable int id,@RequestParam int followId){
-        return userService.unfollow(id,followId);
+    public ResultVo<Void> unfollow(@PathVariable int id){
+        return userService.unfollow(id);
     }
 
 
