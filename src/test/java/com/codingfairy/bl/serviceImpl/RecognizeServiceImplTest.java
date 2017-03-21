@@ -10,8 +10,8 @@ import static org.junit.Assert.*;
 public class RecognizeServiceImplTest {
     @Test
     public void getImageEmotion() throws Exception {
-//        RecognizeServiceImpl recognizeService = new RecognizeServiceImpl();
-//        recognizeService.getImageEmotion("test");
+        RecognizeServiceImpl recognizeService = new RecognizeServiceImpl();
+        recognizeService.getImageEmotion("test");
     }
 
 }

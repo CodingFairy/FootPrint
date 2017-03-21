@@ -1,11 +1,14 @@
 package com.codingfairy.bl.vo;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
  * score of emotion
  */
-@NoArgsConstructor
+@Data
+@AllArgsConstructor
 public class EmotionVo {
     private double anger;
     private double contempt;

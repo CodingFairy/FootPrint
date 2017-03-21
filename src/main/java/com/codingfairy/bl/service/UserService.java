@@ -19,7 +19,10 @@ public interface UserService{
 
     ResultVo<UserVo> updateUser(int id, String avatar,Gender gender,String description);
 
-    ResultVo<RouteVo> saveRoute(int userId, List<Integer> storyIdList);
+    /**
+     * 默认路线中点的顺序就是传入的list中点的顺序
+     */
+    ResultVo<RouteVo> saveRoute(int userId, List<Integer> storyIdList, String description);
 
     ResultVo<Void> deleteRoute(int routeId);
 

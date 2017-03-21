@@ -49,9 +49,9 @@ public class StoryController {
 
     @ApiOperation(value = "unStar a story", notes = "Cancel star a story",
             response = ResultVo.class, produces = "application/json;charset=UTF-8")
-    @GetMapping(value = "/unstar/{userId}",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResultVo<Void> unstarStory(@PathVariable int userId,@RequestParam int storyId){
-        return storyService.unStarStory(userId,storyId);
+    @GetMapping(value = "/unstar/{starId}",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResultVo<Void> unstarStory(@PathVariable int starId){
+        return storyService.unStarStory(starId);
     }
 
     @ApiOperation(value = "Comment a story", notes = "Comment a story",

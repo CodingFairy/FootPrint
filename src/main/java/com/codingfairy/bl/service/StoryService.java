@@ -17,7 +17,7 @@ public interface StoryService {
 
     ResultVo<StarVo> starStory(int userId, int storyId);
 
-    ResultVo<Void> unStarStory(int userId,int storyId);
+    ResultVo<Void> unStarStory(int starId);
 
     ResultVo<CommentVo> comment(int userId,int storyId,String content,int parent);
 

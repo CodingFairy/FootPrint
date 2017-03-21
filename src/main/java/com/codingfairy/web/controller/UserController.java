@@ -40,8 +40,9 @@ public class UserController {
     @ApiOperation(value = "make the route", notes = "make route by combining stories",
                 response = ResultVo.class, produces = "application/json;charset=UTF-8")
     @PostMapping(value = "/makeRoute/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResultVo<RouteVo> makeRoute(@PathVariable int id,@RequestParam List<Integer> storyIds){
-        return userService.saveRoute(id,storyIds);
+    public ResultVo<RouteVo> makeRoute(@PathVariable int id,@RequestParam List<Integer> storyIds,
+                                       @RequestParam String description){
+        return userService.saveRoute(id,storyIds,description);
     }
 
     @ApiOperation(value = "delete the route", notes = "delete existed route",
