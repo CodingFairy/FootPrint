@@ -37,3 +37,8 @@ OSS:
   accessKeySecret: qvxT2MOKjes09N9pwMWMYlkClwcDwk
   bucketName: foot-print
   endpoint: oss-cn-shanghai.aliyuncs.com
+---
+emotion:
+  token1: aa04808f99754e89b42bb72da5965dfc
+  token2: 0cf0a055b47641a597352c2d961e4c95
+  api: https://westus.api.cognitive.microsoft.com/emotion/v1.0/recognize

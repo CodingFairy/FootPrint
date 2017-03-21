@@ -9,6 +9,7 @@ import com.codingfairy.util.constant.ErrorCode;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.sql.Timestamp;
 
 /**
  * auth service impl
@@ -33,6 +34,18 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public ResultVo<UserVo> register(String username, String password, String phone) {
-        return null;
+        UserEntity entity = new UserEntity();
+        entity.setName(username);
+        entity.setPassword(password);
+        entity.setPhone(phone);
+        entity.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+        entity.setValid(0);//尚未验证
+        UserEntity savedEntity = userDao.save(entity);
+        if (savedEntity == null){    //用户名或手机重复
+            return new ResultVo<>(ErrorCode.USERNAME_DUPLICATE, null);
+        } else {
+            return new ResultVo<>(ErrorCode.SUCCESS, new UserVo(savedEntity));
+        }
+        //TODO 验证手机号
     }
 }
