@@ -49,17 +49,20 @@ public class StoryServiceImpl implements StoryService {
         storyEntity.setContent(content);
         storyEntity.setLongitude(longitude);
         storyEntity.setLatitude(latitude);
-        List<StoryPicEntity> imageEntityList = new ArrayList<>();
-        for (String url : imgUrlList){
-            StoryPicEntity image = new StoryPicEntity();
-            image.setUrl(url);
-            imageEntityList.add(image);
-        }
-        storyEntity.setPicEntities(imageEntityList);
         StoryEntity savedEntity = storyDao.save(storyEntity);
         if (savedEntity == null) {
             return new ResultVo<>(ErrorCode.SQL_ERROR, null);
         }
+        List<StoryPicEntity> imageEntityList = new ArrayList<>();
+        for (String url : imgUrlList){
+            StoryPicEntity image = new StoryPicEntity();
+            image.setUrl(url);
+            image.setStoryEntity(savedEntity);
+            imageEntityList.add(image);
+        }
+
+        savedEntity.setPicEntities(imageEntityList);
+        storyDao.save(savedEntity);
         analyzeEmotion(savedEntity.getId(), imgUrlList);
         return new ResultVo<>(ErrorCode.SUCCESS, new StoryVo(savedEntity));
     }
@@ -142,9 +145,17 @@ public class StoryServiceImpl implements StoryService {
     }
 
     @Override
+    @Transactional
     public List<CommentVo> getCommentList(int storyId) {
-        //todo no dao
-        return null;
+        StoryEntity storyEntity = storyDao.findById(storyId);
+        List<CommentVo> commentVoList = new ArrayList<>();
+        if (storyEntity == null){
+            return commentVoList;
+        }
+        for (CommentEntity commentEntity : storyEntity.getCommentEntities()){
+            commentVoList.add(new CommentVo(commentEntity, true));
+        }
+        return commentVoList;
     }
 
     @Override
@@ -158,9 +169,19 @@ public class StoryServiceImpl implements StoryService {
     }
 
     @Override
+    @Transactional
     public List<RouteVo> getRouteList(int userId) {
-        //todo no dao
-        return null;
+        UserEntity entity = userDao.findUserById(userId);
+        List<RouteVo> voList = new ArrayList<>();
+        if (entity == null){
+            return voList;
+        }
+        List<RouteEntity> routeStoryEntityList = entity.getRouteEntities();
+        List<RouteVo> routeVoList = new ArrayList<>();
+        for (RouteEntity routeEntity : routeStoryEntityList){
+            routeVoList.add(new RouteVo(routeEntity, true));
+        }
+        return routeVoList;
     }
 
     @Override

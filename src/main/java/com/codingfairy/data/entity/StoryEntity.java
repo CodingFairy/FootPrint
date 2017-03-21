@@ -218,7 +218,7 @@ public class StoryEntity {
         return result;
     }
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "story_id")
     public List<StoryPicEntity> getPicEntities() {
         return picEntities;

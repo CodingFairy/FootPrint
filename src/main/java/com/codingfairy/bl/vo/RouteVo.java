@@ -15,7 +15,7 @@ public class RouteVo {
     private int id;
     private String description;
     private List<RouteStoryVo> routeStoryVos;
-    private List<StoryVo> storyVos;
+//    private List<StoryVo> storyVos;
 
     public RouteVo(RouteEntity routeEntity){
         this(routeEntity,false);

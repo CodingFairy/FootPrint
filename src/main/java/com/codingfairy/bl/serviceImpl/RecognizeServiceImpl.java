@@ -9,6 +9,7 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -17,9 +18,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class RecognizeServiceImpl implements RecognizeService {
+
+    @Autowired
+    private EmotionConfig config;
+
     @Override
     public EmotionVo getImageEmotion(String imgUrl) {
-        EmotionConfig config = new EmotionConfig();
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("url", imgUrl);
         try {
